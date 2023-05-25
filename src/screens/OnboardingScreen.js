@@ -13,7 +13,7 @@ const OnboardingScreen = () => {
         // Configurando a barra de status como transparente
         StatusBar.setTranslucent(true);
         StatusBar.setBackgroundColor('transparent');
-        StatusBar.setBarStyle('dark-content');
+        StatusBar.setBarStyle('light-content');
 
         return () => {
             // Restaurando as configurações da barra de status ao sair da tela
@@ -56,7 +56,7 @@ const styles = StyleSheet.create({
         height: '100%',
     },
     contentContainer: {
-        paddingHorizontal: 16,
+        paddingHorizontal: 30,
         marginBottom: 16,
     },
     title: {
