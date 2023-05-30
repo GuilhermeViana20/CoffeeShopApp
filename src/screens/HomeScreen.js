@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { View, Image, Text, StyleSheet, TouchableOpacity, FlatList, ScrollView } from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons'
-import BottomBar from '../components/BottomBar';
+import { useNavigation } from '@react-navigation/native';
 
 const categories = [
     { id: '1', word: 'Cappuccino' },
@@ -43,7 +43,13 @@ const WordItem = ({ word }) => {
     );
 };
 
-const HomeScreen = ({ navigation }) => {
+const HomeScreen = () => {
+    const navigation = useNavigation();
+
+    const detailProduct = ({ id }) => {
+        navigation.navigate('Detail', { productId: id }); // Redireciona para a página "Detalhe"
+    };
+
     return (
         <View style={styles.container}>
             <Image
@@ -114,7 +120,9 @@ const HomeScreen = ({ navigation }) => {
                         {products.map((card, index) => {
                             if (index % 2 === 0) {
                                 return (
-                                    <BoxProduct card={card} />
+                                    <TouchableOpacity onPress={() => detailProduct(card)}>
+                                        <BoxProduct card={card} />
+                                    </TouchableOpacity>
                                 );
                             }
                         })}
@@ -123,15 +131,15 @@ const HomeScreen = ({ navigation }) => {
                         {products.map((card, index) => {
                             if (index % 2 === 1) {
                                 return (
-                                    <BoxProduct card={card} />
+                                    <TouchableOpacity onPress={() => detailProduct(card)}>
+                                        <BoxProduct card={card} />
+                                    </TouchableOpacity>
                                 );
                             }
                         })}
                     </View>
                 </ScrollView>
             </View>
-
-            <BottomBar navigation={navigation} />
         </View>
     );
 };
